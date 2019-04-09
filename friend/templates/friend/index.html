@@ -1,0 +1,45 @@
+{% extends 'friend/base.html' %}
+{% block title %}<h3 style="text-align: center;">Friends</h3><hr>{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% if friends %}
+        {% for friend in friends %}
+        <div class="col-sm-3">
+            <div class="card card-body" style="margin: 20px; background-color: rebeccapurple;">
+                <h3 style="color: white;text-align: center;">{{ friend.name }}</h3>
+                <img src="{{ friend.image.url }}" style="height: 100px; width: 100px;margin-left: 30px;" class="img img-responsive img-circle img-thumbnail" alt="">
+                <h6>{{ friend.profession }}</h6>
+                <h6>{{ friend.hobbies }}</h6>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModal">
+                  Info
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">{{ friend.name }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        {{ friend.name }} is {{ friend.age }} years old, lives in {{ friend.residence }}. {{ friend.name }} studied at {{ friend.primary_school }}, and then later went to high school at {{ friend.high_school }}. {{ friend.name }} pursued {{ friend.course }} at {{friend.university}}
+                          and is currently a {{ friend.profession }}. {{ friend.name }} likes {{friend.hobbies}} when not busy.
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
