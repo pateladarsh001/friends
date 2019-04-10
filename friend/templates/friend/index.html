@@ -1,6 +1,31 @@
 {% extends 'friend/base.html' %}
 {% block title %}<h3 style="text-align: center;">Friends</h3><hr>{% endblock %}
 {% block content %}
+<html>
+
+<style>
+    body {
+        -webkit-animation: colorchange 60s infinite;
+        animation: colorchange 60s infinite;
+    }
+    @-webkit-keyframes colorchange {
+        0% {background: darkcyan}
+        25% {background: orangered}
+        50% {background: blue}
+        75% {background: darkmagenta}
+        100% {background: gold}
+    }
+    @keyframes colorchange {
+        0% {background: darkcyan}
+        25% {background: orangered}
+        50% {background: blue}
+        75% {background: darkmagenta}
+        100% {background: gold}
+    }
+
+</style>
+
+<body>
 <div class="container">
     <div class="row">
         {% if friends %}
@@ -8,20 +33,20 @@
         <div class="col-sm-3">
             <div class="card card-body" style="margin: 20px; background-color: rebeccapurple;">
                 <h3 style="color: white;text-align: center;">{{ friend.name }}</h3>
-                <img src="{{ friend.image.url }}" style="height: 100px; width: 100px;margin-left: 30px;" class="img img-responsive img-circle img-thumbnail" alt="">
+                <img src="{{ friend.image.url }}" style="height: 100px; width: 100px;margin-left: 35px;" class="img img-responsive img-circle img-thumbnail" alt="">
                 <h6>{{ friend.profession }}</h6>
                 <h6>{{ friend.hobbies }}</h6>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModal">
-                  Info
-                </button>
-
+                <div class="caption">
+                    <a href="{% url 'friend:delete-friend' friend.id %}" class="btn btn-danger btn-sm" style="float: right;"><i class="fas fa-trash"></i> </a>
+                    <a href="" class="btn btn-primary btn-sm" style="float: left;" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-info-circle"></i> </a>
+                </div>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog" role="dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">{{ friend.name }}</h5>
+                        <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;"> {{friend.name}} </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -31,7 +56,8 @@
                           and is currently a {{ friend.profession }}. {{ friend.name }} likes {{friend.hobbies}} when not busy.
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <a href="{% url 'friend:update-friend' friend.id %}" class="btn btn-success btn-sm" style="float: left;margin-right: 85%;"><i class="fas fa-edit"></i> </a>
+                          <a href="" class="btn btn-warning btn-sm" style="float: right;" data-dismiss="modal" ><i class="fas fa-times-circle"></i> </a>
                       </div>
                     </div>
                   </div>
@@ -42,4 +68,6 @@
         {% endif %}
     </div>
 </div>
+</body>
+</html>
 {% endblock %}

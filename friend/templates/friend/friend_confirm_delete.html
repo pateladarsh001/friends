@@ -1,0 +1,26 @@
+{% extends 'friend/base.html' %}
+
+{% block title %}<h4 style="text-align: center;">Delete</h4><hr>{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="card card-body my-3">
+                <h3>Delete Friend {{ object.name }}</h3>
+                <hr>
+                <p>Are you sure you want to Delete?</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <button class="btn btn-outline-danger" type="submit">YES, DELETE</button>
+                        <a href="{% url 'friend:index' %}" class="btn btn-outline-secondary">CANCEL</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+{% endblock %}
