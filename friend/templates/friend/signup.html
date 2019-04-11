@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Caesar Dressing' rel='stylesheet'>
+{% load crispy_forms_tags %}
+<html>
+<style>
+    body {
+        -webkit-animation: colorchange 60s infinite;
+        animation: colorchange 60s infinite;
+    }
+    @-webkit-keyframes colorchange {
+        0% {background: darkcyan}
+        25% {background: orangered}
+        50% {background: blue}
+        75% {background: darkmagenta}
+        100% {background: gold}
+    }
+    @keyframes colorchange {
+        0% {background: darkcyan}
+        25% {background: orangered}
+        50% {background: blue}
+        75% {background: darkmagenta}
+        100% {background: gold}
+    }
+
+</style>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="card card-body" style="background-color: rebeccapurple;margin-top: 50px;">
+                <h4 style="text-align: center;font-family: Caesar Dressing">Sign Up</h4>
+                <hr>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token%}
+                    {{form|crispy}}
+                    <div class="form-group">
+                        <button class="btn btn-block btn-outline-warning" type="submit">Sign Up</button>
+                    </div>
+                    <p style="text-align: center;">Already Registered?<a href="{% url 'friend:login' %}" style="color: red;">Login Here !</a> </p>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
+</body>
+</html>

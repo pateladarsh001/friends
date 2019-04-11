@@ -1,6 +1,6 @@
 {% extends 'friend/base.html' %}
 
-{% block title %}<h4 style="text-align: center;">Create</h4><hr>{% endblock %}
+{% block title %}<h4 style="text-align: center;">{% if object %}Update {{friend.name}} {% else %} Add Friend {%endif%}</h4><hr>{% endblock %}
 
 {% load crispy_forms_tags %}
 
@@ -9,12 +9,12 @@
     <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
-            <div class="card card-body">
+            <div class="card card-body" style=" background-color: {%if object%}slategrey {%else%} cadetblue {%endif%};" >
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{form|crispy}}
                     <div class="form-group">
-                        <button class="btn btn-sm btn-outline btn-info" type="submit">Add</button>
+                        <button class="btn btn-block btn-outline-primary" type="submit">{% if object %}Update{% else %}Add Friend{% endif %}</button>
                     </div>
                 </form>
             </div>

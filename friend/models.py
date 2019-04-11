@@ -1,10 +1,12 @@
 from django.db import models
 from django.shortcuts import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 
 class Friend(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     age = models.CharField(max_length=3)
     residence = models.CharField(max_length=50)

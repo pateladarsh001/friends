@@ -7,15 +7,15 @@
     <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
-            <div class="card card-body my-3">
+            <div class="card card-body my-3" style="background-color: orange;">
                 <h3>Delete Friend {{ object.name }}</h3>
                 <hr>
-                <p>Are you sure you want to Delete?</p>
+                <p style="text-align: center;">Are you sure you want to Delete?</p>
                 <form method="post">
                     {% csrf_token %}
                     <div class="form-group">
                         <button class="btn btn-outline-danger" type="submit">YES, DELETE</button>
-                        <a href="{% url 'friend:index' %}" class="btn btn-outline-secondary">CANCEL</a>
+                        <a href="{% url 'friend:index' %}" class="btn btn-outline-success" style="float: right;">CANCEL</a>
                     </div>
                 </form>
             </div>
